@@ -25,17 +25,17 @@ static char *file_to_str(char *buf, int c, int fd) {
 static char *file(const int fd) {
     char buf[256];
     int c = read(fd, buf, 255);
-
     char *result = file_to_str(buf, c, fd);
+
     return result;
 }
 
 static char *get_remainder(char *read_strall, int first) {
     int last = mx_strlen(read_strall);
     char *result = mx_strnew(last - first);
-
     int j = 0;
-    for(int i = first; i < last; i++, j++)
+
+    for (int i = first; i < last; i++, j++)
         result[j] = read_strall[i];
     return result;
 }
@@ -62,7 +62,7 @@ int mx_read_line(char **lineptr, size_t buf_size, char delim, const int fd) {
     static char *remainder[4096];
     char *read_strall = get_read_strall(remainder, fd, buf_size);
     char *tmp = NULL; 
-    int get_char = get_char = mx_get_char_index(read_strall, delim);;
+    int get_char = get_char = mx_get_char_index(read_strall, delim);
 
     if (get_char > -1) {
         tmp = *lineptr;
